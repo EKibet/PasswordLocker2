@@ -33,7 +33,7 @@ class UserTestCases(unittest.TestCase):
         '''
         self.new_user.save_user()
         user_exist  = Users.find_by_username("Edgar")
-        self.asserTrue(user_exist)  
+        self.assertTrue(user_exist)  
 
     # def test_user_with_an_account_can_login(self):
         
