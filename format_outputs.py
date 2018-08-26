@@ -13,7 +13,15 @@ class FormatOutput():
         'magenta': '\033[95m'
     }
     def __init__(self,color):
-        self.color = Format.colors[color]
+        self.color = self.colors[color]
         self.layout = self.colors['default']
     def __call__(self,text):
         print(self.color +text+self.layout)
+
+print_s = FormatOutput('success')
+print_w = FormatOutput('warning')
+print_e = FormatOutput('fail')
+print_d = FormatOutput('default')
+print_y = FormatOutput('yellow')
+input_b = FormatOutput('blue')
+print_m = FormatOutput('magenta')
