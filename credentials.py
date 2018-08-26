@@ -10,3 +10,9 @@ class Credentials():
 
     def save_credential(self):
         self.credentials_list.append(self)
+
+    
+    @classmethod
+    def display_credentials(cls):
+        for credential in cls.credentials_list:
+            return credential
