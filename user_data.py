@@ -31,6 +31,6 @@ class Users():
         '''
         current_user = ""
         for current_user in cls.users_list:
-            if current_user.user_password == username and current_user.password == password:
+            if current_user.user_name == username and current_user.user_password == password:
                 return current_user
 
