@@ -65,7 +65,7 @@ def main():
             user_exists = verify_user(uname,upass)
             if user_exists == uname:
                 while True:
-                    print("Please choose one of the following options\n \tSC - Save Credentials \n \tDC - Display Credentials \n \tDL - DeleteCredential")
+                    print_m("Please choose one of the following options\n \tSC -  Save Credentials \n\tSMC - Multiple Credentials \n \tDC - Display Credentials \n \tFC - Find Credential")
                     cred_input=input("\t\t")
                     if cred_input== "SC":
                         username = input("\n\tEnter site username: ")
@@ -96,8 +96,10 @@ def main():
                         if display_credentials():
                             print("Here is a list of all your credentials")
                             print('\n')
+                            display_cred = Credentials.display_credentials()
+                            print_s(f" {display_cred.site_name} {display_cred.username}")
+                            lines=(len(display_cred.site_name)*3+3)
 
-                            print_s(f" {site_name} {username}")
                             print('\n')
                         else:
                             print('\n')
@@ -110,7 +112,11 @@ def main():
                     elif cred_input == "FC":
                         cred = input("Enter the sitename")
                         found_cred = find_credential_by_sitename(cred)
+
                         print_s(f"\n{found_cred.site_name} {found_cred.site_username} {found_cred.site_password}")
+                        # columns=[found_cred.site_name, found_cred.site_username,found_cred.site_password]
+                        # lines=(len(found_cred.site_name)*4+4)
+                        # print_s(tabulate(found_cred.site_name, found_cred.site_username,found_cred.site_password,columns,'grid'))
                     elif cred_input == "SMC":
                         while True:
                             username = input("\n\tEnter site username: ")
@@ -128,11 +134,10 @@ def main():
                                     # wait= load()
                                     # print(wait)
                                     sleep(1)
-                                    print ("\t",user_password)
                                     print_s(f"\tYour username is:{username} Your password is:{user_password} ")
                             elif pass_option == "TPass":
                                 user_password = input("\t").strip()
-                            print_y("\n\t\tEnter EX to exit/go back or press any key to continue")
+                            print_y("\n\t\tEnter EX to exit/go back or press enter to continue")
                             ext = input()
                             if ext == "EX":
                                 break
