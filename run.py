@@ -106,7 +106,6 @@ def main():
 
                     elif cred_input == "SMC":
                         while True:
-                            print_y("Enter EX to exit or go back")
                             username = input("\n\tEnter site username: ")
                             site_name= input("\tEnter the site name: ").strip()
                             print("\t\tPlease choose one of the following options\n") 
@@ -126,15 +125,15 @@ def main():
                                     print_s(f"\tYour username is:{username} Your password is:{user_password} ")
                             elif pass_option == "TPass":
                                 user_password = input("\t").strip()
-
-                            if pass_option == "EX":
-                                print_y("See you soon, hope you enjoyed")
+                            print_y("\n\t\tEnter EX to exit/go back or press any key to continue")
+                            ext = input()
+                            if ext == "EX":
                                 break
                             else:
-                                print("Oops! Something went wrong, please try again!")
+                                continue
                             
                     else:
-                        print("Oops! Something went wrong, please try again!")
+                        print("\t\tOops! Something went wrong, please try again!")
             else:
                 print("User does not exist")
                 
