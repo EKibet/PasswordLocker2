@@ -35,14 +35,17 @@ class UserTestCases(unittest.TestCase):
         user_exist  = Users.find_by_username("Edgar")
         self.assertTrue(user_exist)  
 
-    # def test_user_with_an_account_can_login(self):
+    def test_user_with_an_account_can_login(self):
         
-    #     '''
-    #     tests if user can log in using the credentials already saved 
-    #     in users list
-    #     '''
-    #     self.new_user.save_user
-    #     self.asserTrue()
+        '''
+        tests if user can log in using the credentials already saved 
+        in users list
+        '''
+        self.new_user.save_user()
+        validate_user = check_user("Edgar","pass123")
+        self.assertEqual(validate_user.username, self.new_user.username)
 
 if __name__ == '__main__':
     unittest.main()
+
+    
