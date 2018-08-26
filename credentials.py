@@ -2,7 +2,7 @@ import sys
 
 
 class Credentials():
-    credentials_list = {}
+    credentials_list = []
     def __init__(self,site_name,site_username,site_password):
         self.site_name = site_name
         self.site_username = site_username

@@ -48,10 +48,20 @@ class UserTestCases(unittest.TestCase):
     
     # Tests credentials
     def test_if_user_can_create_credential(self):
+        '''
+        test if credentials_list gets appended with
+        added credential
+        '''
         self.new_credential.save_credential()
         self.assertEqual(len(Credentials.credentials_list),1)
 
-
+    # def test_if_CM_displays_credentials(self):
+    #     '''
+    #     passes a value to credentials_display()
+    #     to check if all credentials can be returned
+    #     '''
+    #     self.new_credential.save_credential()
+    #     self.assertEqual()
 if __name__ == '__main__':
     unittest.main()
 
