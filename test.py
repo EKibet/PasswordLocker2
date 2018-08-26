@@ -1,14 +1,19 @@
 import unittest
 import sys
-import User from user_data
+from user_data import Users 
 
-class UserTestCases():
+class UserTestCases(unittest.TestCase):
 
     def tearDown(self):
-        User.users_list=[]
+        Users.users_list=[]
 
     def setUp(self):
-        new_user = User("Edgar","pass123")
+        self.new_user = Users("Edgar","pass123")
 
     def test_if_user_instance_returns_expected_output(self):
-        
+        self.new_user.save_user()
+        self.assertEqual(len(Users.users_list),1)
+
+
+if __name__ == '__main__':
+    unittest.main()
