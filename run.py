@@ -12,10 +12,11 @@ def create_acc(u_name, u_pass):
     
 
 def verify_user(uname,upass):
-	'''
+    '''
 	Function that verifies the existance of the user before creating credentials
 	'''
-	checking_user = Users.check_user(uname,upass)
+    checking_user = Users.check_user(uname,upass)
+    return checking_user
 
 def save_acc_info(accout):
     accout.save_user()
