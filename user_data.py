@@ -12,11 +12,25 @@ class Users():
             Users.users_list.append(self)
         else:
             print("username or password given is empty")
+    
     @classmethod
     def find_by_username(cls,username):
+        '''
+        searchs for a specific user using
+        value passed at username arg 
+        '''
         for user in cls.users_list:
             if user.user_name == username:
                 return True
             return False
 
+    @classmethod
+    def check_user(cls,username,password):
+        '''
+        checks if the name and password entered matchs
+        '''
+        current_user = ""
+        for current_user in cls.users_list:
+            if current_user.user_password == username and current_user.password == password:
+                return current_user
 
