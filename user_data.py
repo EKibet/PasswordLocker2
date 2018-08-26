@@ -30,7 +30,7 @@ class Users():
         checks if the name and password entered matchs
         '''
         current_user = ""
-        for current_user in cls.users_list:
-            if current_user.user_name == username and current_user.user_password == password:
+        for user in cls.users_list:
+            if user.user_name == username and user.user_password == password:
+                current_user = user.user_name
                 return current_user
-
