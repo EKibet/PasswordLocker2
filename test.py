@@ -1,6 +1,7 @@
 import unittest
 import sys
 from user_data import Users 
+from credentials import Credentials
 
 class UserTestCases(unittest.TestCase):
 
@@ -16,7 +17,7 @@ class UserTestCases(unittest.TestCase):
         it encounters a new method
         '''
         self.new_user = Users("Edgar","pass123")
-
+        self.new_credential = Credentials("facebook", "ekibe", "pass123")
     def test_if_user_can_create_an_account(self):
 
         '''
@@ -44,6 +45,12 @@ class UserTestCases(unittest.TestCase):
         self.new_user.save_user()
         validate_user = Users.check_user("Edgar","pass123")
         self.assertEqual(validate_user, self.new_user.user_name)
+    
+    # Tests credentials
+    def test_if_user_can_create_credential(self):
+        self.new_user.save_credential()
+        self.assertEqual(len(Credentials.credentials_list),1)
+
 
 if __name__ == '__main__':
     unittest.main()
