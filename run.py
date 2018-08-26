@@ -34,6 +34,9 @@ def create_credentials(site_name,username, user_password):
     new_credential = Credentials(site_name,username, user_password)
     return new_credential
 
+def find_credential_by_sitename(found_cred):
+    return Credentials.find_by_sitename(found_cred)
+
 credentials_message="\t\t\tBeware that the CM is case sensitive!"
 
 def main():
@@ -93,6 +96,7 @@ def main():
                         if display_credentials():
                             print("Here is a list of all your credentials")
                             print('\n')
+
                             print_s(f" {site_name} {username}")
                             print('\n')
                         else:
@@ -103,7 +107,10 @@ def main():
                     elif cred_input == "CP":
                         copied_object = input("\tEnter password:")
                         copy_credential(copied_object) 
-
+                    elif cred_input == "FC":
+                        cred = input("Enter the sitename")
+                        found_cred = find_credential_by_sitename(cred)
+                        print_s(f"\n{found_cred.site_name} {found_cred.site_username} {found_cred.site_password}")
                     elif cred_input == "SMC":
                         while True:
                             username = input("\n\tEnter site username: ")
@@ -112,7 +119,7 @@ def main():
                             print_y("\t\tAG-Autogenerate password \n\t\tTPass- Type Your Password")
                             pass_option = input("\t").strip()
                             if pass_option == "AG":
-                                chars = '12The5S@un6789Out450Come23SUHaha' #characters to choose from
+                                chars = 'abcdefghijklmnopqrstwxyz1234567890' #characters to choose from
                                 print_y("\tEnter the length of password you want:")
                                 length = int(input("\t"))
                                 user_password = ''
