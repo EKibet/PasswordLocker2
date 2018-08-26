@@ -48,7 +48,7 @@ class UserTestCases(unittest.TestCase):
     
     # Tests credentials
     def test_if_user_can_create_credential(self):
-        self.new_user.save_credential()
+        self.new_credential.save_credential()
         self.assertEqual(len(Credentials.credentials_list),1)
 
 
