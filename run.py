@@ -2,6 +2,9 @@ import sys
 import getpass
 from user_data import Users
 from format_outputs import *
+import random
+from time import sleep
+from credentials import Credentials
 
 
 def create_acc(u_name, u_pass):
@@ -10,6 +13,8 @@ def create_acc(u_name, u_pass):
     new_acc =Users(u_name,u_pass)
     return new_acc
     
+def display_credentials():
+    return Credentials.display_credentials()
 
 def verify_user(uname,upass):
     '''
@@ -20,6 +25,14 @@ def verify_user(uname,upass):
 
 def save_acc_info(accout):
     accout.save_user()
+
+def save_credentials(cred):
+    Credentials.save_credential(cred)
+
+
+def create_credentials(site_name,username, user_password):
+    new_credential = Credentials(site_name,username, user_password)
+    return new_credential
 
 credentials_message="\t\t\tBeware that the CM is case sensitive!"
 
@@ -67,23 +80,21 @@ def main():
                                 # wait= load()
                                 # print(wait)
                             sleep(1)
-                            clearterm(2)
                             print ("\t",user_password)
                             print_s(f"\tYour username is:{username} Your password is:{user_password} ")
                         elif pass_option == "TPass":
                             user_password = input("\t").strip()
                         else:
                             print_e("Use the available")
-                        add_cred(save_credentials_info(username,site_name,user_password))
+                        # add_cred(save_credentials_info(username,site_name,user_password))
                         save_credentials(create_credentials(site_name,username, user_password))
 
                     elif cred_input == "DC":
                         if display_credentials():
                             print("Here is a list of all your credentials")
                             print('\n')
-                            for credential in display_credentials():
-                                print_e(f" {credential.site_name} {credential.username} .....")
-                                print('\n')
+                            print_s(f" {site_name} {username}")
+                            print('\n')
                         else:
                             print('\n')
                             print("You dont seem to have any contacts saved yet")
@@ -91,12 +102,35 @@ def main():
                     
                     elif cred_input == "CP":
                         copied_object = input("\tEnter password:")
-                        copy_credential(copied_object)                            
+                        copy_credential(copied_object) 
+
+                    elif cred_input == "SMC":
+                        while True:
+                            username = input("\n\tEnter site username: ")
+                            site_name= input("\tEnter the site name: ").strip()
+                            print("\t\tPlease choose one of the following options\n") 
+                            print_y("\t\tAG-Autogenerate password \n\t\tTPass- Type Your Password")
+                            pass_option = input("\t").strip()
+                            if pass_option == "AG":
+                                chars = '12The5S@un6789Out450Come23SUHaha' #characters to choose from
+                                print_y("\tEnter the length of password you want:")
+                                length = int(input("\t"))
+                                user_password = ''
+                                for c in range(length):
+                                    user_password+= random.choice(chars) #generate random password
+                                    # wait= load()
+                                    # print(wait)
+                                    sleep(1)
+                                    print ("\t",user_password)
+                                    print_s(f"\tYour username is:{username} Your password is:{user_password} ")
+                            else:
+                                print("Oops! Something went wrong, please try again!")
+
                     else:
                         print("Oops! Something went wrong, please try again!")
             else:
                 print("User does not exist")
-                break
+                
     else:
         print("Enter the specified options")
         # break
