@@ -48,8 +48,49 @@ def main():
             print("\tEnter your Password: ")
             upass = getpass.getpass("\t\t")
             user_exists = verify_user(uname,upass)
-            if user_exists == uname:
-                print_s("Welcome!")
+            if user_exists == uname:if cred_input== "SC":
+                username = input("\n\tEnter site username: ")
+                site_name= input("\tEnter the site name: ").strip()
+                print("\t\tPlease choose one of the following options\n") 
+                print_y("\t\tAG-Autogenerate password \n\t\tTPass- Type Your Password")
+                pass_option = input("\t").strip()
+                if pass_option == "AG":
+                    chars = '12The5S@un6789Out450Come23SUHaha' #characters to choose from
+                    print_y("\tEnter the length of password you want:")
+                    length = int(input("\t"))
+                    user_password = ''
+                    for c in range(length):
+                        user_password+= random.choice(chars) #generate random password
+                        # wait= load()
+                        # print(wait)
+                        sleep(1)
+                        clearterm(2)
+                        print ("\t",user_password)
+                        print_s(f"\tYour username is:{username} Your password is:{user_password} ")
+                        elif pass_option == "TPass":
+                            user_password = input("\t").strip()
+                        else:
+                            print_e("Use the available")
+                        add_cred(save_credentials_info(username,site_name,user_password))
+                        save_credentials(create_credentials(site_name,username, user_password))
+
+                elif cred_input == "DC":
+                    if display_credentials():
+                        print("Here is a list of all your credentials")
+                        print('\n')
+                        for credential in display_credentials():
+                            print_e(f" {credential.site_name} {credential.username} .....")
+                            print('\n')
+                    else:
+                        print('\n')
+                        print("You dont seem to have any contacts saved yet")
+                        print('\n')
+                    
+                elif cred_input == "CP":
+                    copied_object = input("\tEnter password:")
+                    copy_credential(copied_object)                            
+                else:
+                    print("Oops! Something went wrong, please try again!")
         
         else:
             print("User does not exist")

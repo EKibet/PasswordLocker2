@@ -43,7 +43,7 @@ class UserTestCases(unittest.TestCase):
         '''
         self.new_user.save_user()
         validate_user = Users.check_user("Edgar","pass123")
-        self.assertEqual(validate_user.user_name, self.new_user.user_name)
+        self.assertEqual(validate_user, self.new_user.user_name)
 
 if __name__ == '__main__':
     unittest.main()
