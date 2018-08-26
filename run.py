@@ -4,6 +4,15 @@ from user_data import Users
 from format_outputs import *
 
 
+def create_acc(u_name, u_pass):
+    # u_pass= hashlib.new(u_pass)
+    # encrypted_pass=sdigest(u_pass)
+    new_acc =Users(u_name,u_pass)
+    return new_acc
+
+def save_acc_info(accout):
+    accout.save_user()
+
 credentials_message="\t\t\tBeware that the CM is case sensitive!"
 def main():
     while True:
