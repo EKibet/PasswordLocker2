@@ -10,3 +10,13 @@ class Users():
     def save_user(self):
         if self.user_name != " " and self.user_password != " ":
             Users.users_list.append(self)
+        else:
+            print("username or password given is empty")
+    @classmethod
+    def find_by_username(cls,username):
+        for user in cls.users_list:
+            if user.user_name == username:
+                return True
+            return False
+
+
