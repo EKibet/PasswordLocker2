@@ -35,6 +35,21 @@ def main():
             u_pass = getpass.getpass("\t")
             save_acc_info(create_acc(u_name,u_pass))
             print_s(f"\t\t{u_name} account Successfully created\n")
+        
+        elif short_code == 'LI':
+            print_w(credentials_message)
+            print_w (credentials_message)
+            print("-"*10)
+
+            print ("\tEnter Username: ")
+            u_name = input("\t")
+
+            print ("\tEnter Password:")
+            u_pass = getpass.getpass("\t")
+            save_acc_info(create_acc(u_name,u_pass))
+            print_s(f"\t\t{u_name} Account Successfully created\n")
+
+        
         else:
             print("User does not exist")
             break
