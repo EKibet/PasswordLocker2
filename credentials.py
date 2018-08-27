@@ -1,5 +1,5 @@
 import sys
-
+import pyperclip
 
 class Credentials():
     credentials_list = []
@@ -9,10 +9,8 @@ class Credentials():
         self.site_password = site_password
 
     def save_credential(self):
-        user_data = {
-            site_name
-        }
-        self.credentials_list.push(self)
+        
+        self.credentials_list.append(self)
 
     
     @classmethod
@@ -25,3 +23,11 @@ class Credentials():
         for credentials in cls.credentials_list:
             if credentials.site_name == search:
                 return credentials
+                
+    @classmethod
+    def copy_credential(cls,site_name):
+        '''
+        Class method that copies a credential's info after the credential's site name is entered
+        '''
+        found_credential = cls.find_by_sitename(site_name)
+        return pyperclip.copy(found_credential.site_password)

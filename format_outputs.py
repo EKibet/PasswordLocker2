@@ -25,3 +25,15 @@ print_d = FormatOutput('default')
 print_y = FormatOutput('yellow')
 input_b = FormatOutput('blue')
 print_m = FormatOutput('magenta')
+def banner():
+    print_y(r"""
+                                .- - - - .
+                               / . - - -. \
+                              / /        \ \
+                              | |        | |
+                           ___| |________| |___
+                         .' |_|        |_|     '.
+                         |   PASSWORD  LOCKER   |
+                         '.____ ___    ____ ___.'
+          
+          """)

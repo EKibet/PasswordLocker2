@@ -1,4 +1,6 @@
-import sys
+#!/usr/bin/env python3.6
+
+import sys,os
 import getpass
 from user_data import Users
 from format_outputs import *
@@ -37,16 +39,22 @@ def create_credentials(site_name,username, user_password):
 def find_credential_by_sitename(found_cred):
     return Credentials.find_by_sitename(found_cred)
 
+def copy_credential(site_name):
+	'''
+	copy credential Password to the clipboard
+	'''
+	return Credentials.copy_credential(site_name)
 credentials_message="\t\t\tBeware that the CM is case sensitive!"
 
 def main():
     while True:
+        banner()
         print("Use these short code :\n\tCA - Create Acount,\n\tLI - Log in")
         short_code = input("\t")
 
         if short_code == 'CA':
             print_w (credentials_message)
-            print("-"*10)
+            print("-"*50)
 
             print ("\tEnter Username: ")
             u_name = input("\t")
@@ -74,7 +82,7 @@ def main():
                         print_y("\t\tAG-Autogenerate password \n\t\tTPass- Type Your Password")
                         pass_option = input("\t").strip()
                         if pass_option == "AG":
-                            chars = '12The5S@un6789Out450Come23SUHaha' #characters to choose from
+                            chars = 'qwertyuiosdfghjklzxcvbnmdfghjk' #characters to choose from
                             print_y("\tEnter the length of password you want:")
                             length = int(input("\t"))
                             user_password = ''
@@ -97,8 +105,8 @@ def main():
                             print("Here is a list of all your credentials")
                             print('\n')
                             display_cred = Credentials.display_credentials()
-                            print_s(f" {display_cred.site_name} {display_cred.username}")
-                            lines=(len(display_cred.site_name)*3+3)
+                            print_s(f" {display_cred.site_name} {display_cred.site_username}")
+                            # lines=(len(display_cred.site_name)*3+3)
 
                             print('\n')
                         else:
@@ -109,6 +117,8 @@ def main():
                     elif cred_input == "CP":
                         copied_object = input("\tEnter password:")
                         copy_credential(copied_object) 
+                        sleep(10)
+                        print ("Password copied for 10 seconds")
                     elif cred_input == "FC":
                         cred = input("Enter the sitename")
                         found_cred = find_credential_by_sitename(cred)
@@ -133,6 +143,7 @@ def main():
                                     user_password+= random.choice(chars) #generate random password
                                     # wait= load()
                                     # print(wait)
+                                    # os.system(clear)
                                     sleep(1)
                                     print_s(f"\tYour username is:{username} Your password is:{user_password} ")
                             elif pass_option == "TPass":
